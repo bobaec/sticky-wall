@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import "./App.scss";
-import InputTodo from "./components/InputTodo";
 import ListTodos from "./components/ListTodos/ListTodos";
 import {
     getAllTodosHelper,
@@ -23,26 +22,29 @@ function App() {
     const addTodo = async (title, description, list_type, tags) => {
         let parseTags = tags.split(", ");
         parseTags = parseTags.map((tag) => tag.replace(/,$/, ""));
-        const response = await addTodoHelper(
+        const response = addTodoHelper(
             title,
             description,
             list_type,
             parseTags
         );
+        await response;
         setTodos(await getAllTodosHelper());
     };
     const editTodo = async (id, title, description, list_type, tags) => {
-        const response = await editTodoHelper(
+        const response = editTodoHelper(
             id,
             title,
             description,
             list_type,
             tags
         );
+        await response;
         setTodos(await getAllTodosHelper());
     };
     const deleteTodo = async (id) => {
-        const response = await deleteTodoHelper(id);
+        const response = deleteTodoHelper(id);
+        await response;
         setTodos(await getAllTodosHelper());
     };
 
@@ -60,12 +62,6 @@ function App() {
                     />
                 </div>
             </div>
-            {/* <InputTodo onAddTodo={addTodo} /> */}
-            {/* <ListTodos
-                todos={todos}
-                deleteTodo={deleteTodo}
-                editTodo={editTodo}
-            /> */}
         </div>
     );
 }

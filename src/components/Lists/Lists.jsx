@@ -1,14 +1,7 @@
 import React from "react";
 import "./Lists.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-    faAngleDoubleRight,
-    faListCheck,
-    faCalendarDays,
-    faNoteSticky,
-    faSquare,
-    faPlus,
-} from "@fortawesome/free-solid-svg-icons";
+import { faSquare, faPlus } from "@fortawesome/free-solid-svg-icons";
 
 const Lists = () => {
     return (
