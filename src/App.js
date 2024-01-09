@@ -20,12 +20,25 @@ function App() {
         getAllTodos();
     }, []);
 
-    const addTodo = async (description) => {
-        const response = await addTodoHelper(description);
+    const addTodo = async (title, description, list_type, tags) => {
+        let parseTags = tags.split(", ");
+        parseTags = parseTags.map((tag) => tag.replace(/,$/, ""));
+        const response = await addTodoHelper(
+            title,
+            description,
+            list_type,
+            parseTags
+        );
         setTodos(await getAllTodosHelper());
     };
-    const editTodo = async (id, description) => {
-        const response = await editTodoHelper(id, description);
+    const editTodo = async (id, title, description, list_type, tags) => {
+        const response = await editTodoHelper(
+            id,
+            title,
+            description,
+            list_type,
+            tags
+        );
         setTodos(await getAllTodosHelper());
     };
     const deleteTodo = async (id) => {
@@ -41,8 +54,9 @@ function App() {
                     <div className="sticky-wall-title">Sticky Wall</div>
                     <ListTodos
                         todos={todos}
-                        deleteTodo={deleteTodo}
+                        addTodo={addTodo}
                         editTodo={editTodo}
+                        deleteTodo={deleteTodo}
                     />
                 </div>
             </div>

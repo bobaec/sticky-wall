@@ -3,9 +3,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faSearch } from "@fortawesome/free-solid-svg-icons";
 
 import "./Sidebar.scss";
-import Tasks from "../Tasks/Tasks";
+import Tasks from "./Tasks/Tasks";
 import Lists from "../Lists/Lists";
-import Tags from "../Tags/Tags";
+import Tags from "./Tags/Tags";
 
 const Sidebar = () => {
     return (

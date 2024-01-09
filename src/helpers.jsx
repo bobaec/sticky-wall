@@ -8,9 +8,9 @@ const getAllTodosHelper = async () => {
     }
 };
 
-const addTodoHelper = async (description) => {
+const addTodoHelper = async (title, description, list_type, tags) => {
     try {
-        const body = { description };
+        const body = { title, description, list_type, tags };
         const response = await fetch("http://localhost:5000/todos", {
             method: "POST",
             headers: {
@@ -23,9 +23,9 @@ const addTodoHelper = async (description) => {
     }
 };
 
-const editTodoHelper = async (id, description) => {
-    const body = { description };
+const editTodoHelper = async (id, title, description, list_type, tags) => {
     try {
+        const body = { title, description, list_type, tags };
         const response = await fetch(`http://localhost:5000/todos/${id}`, {
             method: "PUT",
             headers: {

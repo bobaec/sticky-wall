@@ -1,37 +1,86 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./ListTodos.scss";
-import EditTodo from "../EditTodo";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import AddModal from "../Modals/AddModal/AddModal";
+import EditModal from "../Modals/EditModal/EditModal";
 
-const ListTodos = ({ todos, deleteTodo, editTodo }) => {
+const ListTodos = ({ todos, addTodo, editTodo, deleteTodo }) => {
+    const [showAddTodoModal, setShowAddTodoModal] = useState(false);
+    const [showEditTodoModal, setShowEditTodoModal] = useState(false);
+    const [specificTodo, setSpecificTodo] = useState(null);
+
+    const handleAdd = (title, description, list, tags) => {
+        addTodo(title, description, list, tags);
+        setShowAddTodoModal(false);
+    };
+
+    const handleEdit = (id, title, description, list, tags) => {
+        editTodo(id, title, description, list, tags);
+        setShowEditTodoModal(false);
+    };
+
+    const handleDelete = (id) => {
+        deleteTodo(id);
+        setShowEditTodoModal(false);
+    };
+
+    const showAddModal = () => {
+        setSpecificTodo(null);
+        setShowAddTodoModal(true);
+    };
+    const showEditModal = (todo) => {
+        setSpecificTodo(todo);
+        setShowEditTodoModal(true);
+    };
+
     return (
         <div className="list-todos-container">
-            {/* <table className="table mt-5 text-center">
-                <thead>
-                    <tr>
-                        <th>Description</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {todos.map((todo) => (
-                        <tr key={todo.todo_id}>
-                            <td>{todo.description}</td>
-                            <td>
-                                <EditTodo todo={todo} editTodo={editTodo} />
-                            </td>
-                            <td>
-                                <button
-                                    className="btn btn-danger"
-                                    onClick={() => deleteTodo(todo.todo_id)}
-                                >
-                                    Delete
-                                </button>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table> */}
+            {todos.map((todo, index) => {
+                return (
+                    <div
+                        className="single-todos-container"
+                        key={index}
+                        onClick={() => showEditModal(todo)}
+                    >
+                        <div className="todo-title">{todo.title}</div>
+                        <div className="todo-description">
+                            {todo.description.split("\n").map((line, index) => {
+                                return (
+                                    <div key={index}>
+                                        {line}
+                                        <br />
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </div>
+                );
+            })}
+            <div
+                className="add-todos-container gray-background"
+                onClick={() => showAddModal(null)}
+            >
+                <div className="todo-description">
+                    <FontAwesomeIcon icon={faPlus} size="6x" />
+                </div>
+            </div>
+            {showAddTodoModal ? (
+                <AddModal
+                    show={showAddTodoModal}
+                    closeModal={() => setShowAddTodoModal(false)}
+                    onSubmit={handleAdd}
+                />
+            ) : null}
+            {showEditTodoModal ? (
+                <EditModal
+                    show={showEditTodoModal}
+                    todo={specificTodo}
+                    closeModal={() => setShowEditTodoModal(false)}
+                    onSubmit={handleEdit}
+                    handleDelete={handleDelete}
+                />
+            ) : null}
         </div>
     );
 };

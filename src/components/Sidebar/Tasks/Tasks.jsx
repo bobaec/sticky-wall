@@ -13,10 +13,7 @@ const Tasks = () => {
         <div className="tasks-container">
             <div className="tasks-title">TASKS</div>
             <div className="upcoming-container">
-                <FontAwesomeIcon
-                    className="gray"
-                    icon={faAngleDoubleRight}
-                />
+                <FontAwesomeIcon className="gray" icon={faAngleDoubleRight} />
                 <span className="upcoming-title">Upcoming</span>
             </div>
             <div className="today-container">
@@ -29,7 +26,7 @@ const Tasks = () => {
             </div>
             <div className="sticky-wall-container">
                 <FontAwesomeIcon className="gray" icon={faNoteSticky} />
-                <span className="sticky-wall-title"> Sticky Wall</span>
+                <span className="sticky-wall-title">Sticky Wall</span>
             </div>
         </div>
     );

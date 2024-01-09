@@ -1,7 +1,45 @@
 @import "../../assets/colors";
 
-.list-todos-container {
-    border: 1px solid $sidebar-gray;
+@mixin todo-square {
+    flex: 1 0 30%;
+    height: 250px;
+    min-width: 250px;
+    padding: 25px;
     border-radius: 10px;
-    height: 100%;
+    margin: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    cursor: pointer;
+}
+
+.list-todos-container {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid $icon-gray;
+    border-radius: 10px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    padding: 20px;
+    .single-todos-container {
+        @include todo-square;
+        background-color: $icon-yellow;
+
+        .todo-title {
+            margin-bottom: 10px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .todo-description {
+            display: -webkit-box;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            -webkit-line-clamp: 6;
+            -webkit-box-orient: vertical;
+        }
+    }
+    .add-todos-container {
+        @include todo-square;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }
