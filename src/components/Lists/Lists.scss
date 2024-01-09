@@ -1,0 +1,33 @@
+@import "../../assets/colors";
+
+.lists-container {
+    display: flex;
+    flex-direction: column;
+    .today-container,
+    .calendar-container,
+    .sticky-wall-container,
+    .add-list-container {
+        margin-left: 10px;
+        margin-top: 10px;
+        .add-list-title,
+        .today-title,
+        .calendar-title,
+        .add-list-title {
+            margin-left: 15px;
+        }
+    }
+    .today-title,
+    .calendar-title,
+    .sticky-wall-title,
+    .add-list-title {
+        margin-left: 15px;
+    }
+    .lists-title {
+        font-size: 12px;
+        font-weight: bold;
+    }
+    .upcoming-container {
+        display: flex;
+        align-items: center;
+    }
+}

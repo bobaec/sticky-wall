@@ -1,25 +1,59 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { useEffect, useState } from "react";
+import "./App.scss";
+import InputTodo from "./components/InputTodo";
+import ListTodos from "./components/ListTodos/ListTodos";
+import {
+    getAllTodosHelper,
+    addTodoHelper,
+    editTodoHelper,
+    deleteTodoHelper,
+} from "./helpers";
+import Sidebar from "./components/Sidebar/Sidebar";
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [todos, setTodos] = useState([]);
+
+    useEffect(() => {
+        const getAllTodos = async () => {
+            const response = await getAllTodosHelper();
+            setTodos(response);
+        };
+        getAllTodos();
+    }, []);
+
+    const addTodo = async (description) => {
+        const response = await addTodoHelper(description);
+        setTodos(await getAllTodosHelper());
+    };
+    const editTodo = async (id, description) => {
+        const response = await editTodoHelper(id, description);
+        setTodos(await getAllTodosHelper());
+    };
+    const deleteTodo = async (id) => {
+        const response = await deleteTodoHelper(id);
+        setTodos(await getAllTodosHelper());
+    };
+
+    return (
+        <div className="website-container">
+            <div className="todo-container">
+                <Sidebar />
+                <div className="main-content-container">
+                    <div className="sticky-wall-title">Sticky Wall</div>
+                    <ListTodos
+                        todos={todos}
+                        deleteTodo={deleteTodo}
+                        editTodo={editTodo}
+                    />
+                </div>
+            </div>
+            {/* <InputTodo onAddTodo={addTodo} /> */}
+            {/* <ListTodos
+                todos={todos}
+                deleteTodo={deleteTodo}
+                editTodo={editTodo}
+            /> */}
+        </div>
+    );
 }
 
 export default App;

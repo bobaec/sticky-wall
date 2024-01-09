@@ -1,0 +1,59 @@
+@import "./assets/_colors.scss";
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+body {
+    font-family: "Poppins", sans-serif;
+    background-color: $background-green;
+    width: 80%;
+    max-width: 1500px;
+    margin: auto;
+}
+
+.website-container {
+    margin-top: 50px;
+    .todo-container {
+        display: flex;
+        flex-wrap: wrap;
+        background-color: white;
+        border-radius: 10px;
+        padding: 20px;
+        height: 85vh;
+        max-width: 1500px;
+        .main-content-container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            flex: 1 0 67%;
+            margin-left: 10px;
+            .sticky-wall-title {
+                font-size: 30px;
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+.gray {
+    color: $icon-gray;
+}
+.gray-background {
+    background-color: $icon-gray;
+}
+.red {
+    color: $icon-red;
+}
+.red-background {
+    background-color: $icon-red;
+}
+.blue {
+    color: $icon-blue;
+}
+.blue-background {
+    background-color: $icon-blue;
+}
+.yellow {
+    color: $icon-yellow;
+}
+.yellow-background {
+    background-color: $icon-yellow;
+}
