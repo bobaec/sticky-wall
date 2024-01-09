@@ -1,4 +1,4 @@
-Simple Todo List using PERN (Postgresql, Express, React, NodeJS)
+Simple Todo List using PERN (Postgresql, Express, React, NodeJS) with React Bootstrap and SASS
 
 How to run:
 
