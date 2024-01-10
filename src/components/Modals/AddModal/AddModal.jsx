@@ -7,7 +7,7 @@ const AddModal = ({ show, closeModal, onSubmit }) => {
     const [description, setDescription] = useState("");
     const [list, setList] = useState("General");
     const [colorTitle, setColorTitle] = useState("Yellow");
-    const [listColor, setListColor] = useState("#ffd43b");
+    const [listColor, setListColor] = useState("Yellow, #ffd43b");
     const [tags, setTags] = useState("");
     const [validated, setValidated] = useState(false);
 

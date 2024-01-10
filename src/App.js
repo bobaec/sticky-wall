@@ -7,18 +7,21 @@ import {
     editTodoHelper,
     deleteTodoHelper,
     searchTodoHelper,
+    filterTodoByListHelper,
 } from "./helpers";
 import Sidebar from "./components/Sidebar/Sidebar";
 function App() {
     const [todos, setTodos] = useState([]);
-
+    const [allTodos, setAllTodos] = useState([]);
     useEffect(() => {
         getAllTodos();
     }, []);
 
     const getAllTodos = async () => {
         const response = await getAllTodosHelper();
+        // const filteredResponse = await
         setTodos(response);
+        setAllTodos(response);
     };
 
     const addTodo = async (title, description, list_type, tags, list_color) => {
@@ -32,7 +35,7 @@ function App() {
             list_color
         );
         await response;
-        setTodos(await getAllTodosHelper());
+        getAllTodos();
     };
     const editTodo = async (
         id,
@@ -51,13 +54,13 @@ function App() {
             list_color
         );
         await response;
-        setTodos(await getAllTodosHelper());
+        getAllTodos();
     };
 
     const deleteTodo = async (id) => {
         const response = deleteTodoHelper(id);
         await response;
-        setTodos(await getAllTodosHelper());
+        getAllTodos();
     };
 
     const handleSearch = async (value) => {
@@ -65,12 +68,22 @@ function App() {
         setTodos(response);
     };
 
+    const handleFilteredList = async (value) => {
+        if (value) {
+            const response = await filterTodoByListHelper(value);
+            setTodos(response);
+        } else {
+            getAllTodos();
+        }
+    };
+
     return (
         <div className="website-container">
             <div className="todo-container">
                 <Sidebar
                     handleSearch={handleSearch}
-                    numberOfTodos={todos.length}
+                    todos={allTodos}
+                    handleFilteredList={handleFilteredList}
                 />
                 <div className="main-content-container">
                     <div className="sticky-wall-title">Sticky Wall</div>

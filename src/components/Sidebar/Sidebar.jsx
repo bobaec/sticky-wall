@@ -7,7 +7,7 @@ import Tasks from "./Tasks/Tasks";
 import Lists from "./Lists/Lists";
 import Tags from "./Tags/Tags";
 
-const Sidebar = ({ handleSearch, numberOfTodos }) => {
+const Sidebar = ({ handleSearch, todos, handleFilteredList }) => {
     const [search, setSearch] = useState("");
     const handleSearchRef = useRef(handleSearch);
     useEffect(() => {
@@ -37,9 +37,9 @@ const Sidebar = ({ handleSearch, numberOfTodos }) => {
                     ></input>
                 </form>
             </div>
-            <Tasks numberOfTodos={numberOfTodos} />
+            <Tasks numberOfTodos={todos.length} />
             <hr />
-            <Lists />
+            <Lists todos={todos} handleFilteredList={handleFilteredList} />
             <hr />
             <Tags />
         </div>

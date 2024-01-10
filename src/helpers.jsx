@@ -63,10 +63,23 @@ const searchTodoHelper = async (value) => {
     return jsonData;
 };
 
+const filterTodoByListHelper = async (value) => {
+    const response = fetch("http://localhost:5000/todos/filter", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(value),
+    });
+    const jsonData = (await response).json();
+    return jsonData;
+};
+
 export {
     getAllTodosHelper,
     addTodoHelper,
     editTodoHelper,
     deleteTodoHelper,
     searchTodoHelper,
+    filterTodoByListHelper,
 };

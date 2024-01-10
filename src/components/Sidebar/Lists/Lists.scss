@@ -3,31 +3,25 @@
 .lists-container {
     display: flex;
     flex-direction: column;
-    .today-container,
-    .calendar-container,
-    .sticky-wall-container,
-    .add-list-container {
-        margin: 10px 0 0 10px;
+    .list-container {
+        display: flex;
+        flex-direction: column;
+        margin: 5px 0 0 5px;
         cursor: pointer;
-        .add-list-title,
-        .today-title,
-        .calendar-title,
-        .add-list-title {
-            margin-left: 15px;
+        .list {
+            margin: 5px 0;
+            .title-and-icon-container {
+                display: flex;
+                align-items: center;
+            }
         }
     }
-    .today-title,
-    .calendar-title,
-    .sticky-wall-title,
-    .add-list-title {
+
+    .list-title {
         margin-left: 15px;
     }
     .lists-title {
         font-size: 12px;
         font-weight: bold;
-    }
-    .upcoming-container {
-        display: flex;
-        align-items: center;
     }
 }

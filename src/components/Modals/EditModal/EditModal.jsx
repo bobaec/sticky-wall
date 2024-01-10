@@ -3,7 +3,6 @@ import { Modal, Button, Form, Row, Col, Dropdown } from "react-bootstrap";
 
 const EditModal = ({ show, todo, closeModal, onSubmit, handleDelete }) => {
     const { todo_id, title, description, list_type, tags, list_color } = todo;
-
     const [updatedTitle, setUpdatedTitle] = useState(title || "");
     const [updatedDescription, setUpdatedDescription] = useState(
         description || ""
