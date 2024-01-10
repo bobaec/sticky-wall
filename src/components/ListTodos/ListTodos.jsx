@@ -10,13 +10,13 @@ const ListTodos = ({ todos, addTodo, editTodo, deleteTodo }) => {
     const [showEditTodoModal, setShowEditTodoModal] = useState(false);
     const [specificTodo, setSpecificTodo] = useState(null);
 
-    const handleAdd = (title, description, list, tags) => {
-        addTodo(title, description, list, tags);
+    const handleAdd = (title, description, list_type, tags) => {
+        addTodo(title, description, list_type, tags);
         setShowAddTodoModal(false);
     };
 
-    const handleEdit = (id, title, description, list, tags) => {
-        editTodo(id, title, description, list, tags);
+    const handleEdit = (id, title, description, list_type, tags) => {
+        editTodo(id, title, description, list_type, tags);
         setShowEditTodoModal(false);
     };
 

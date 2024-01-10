@@ -6,18 +6,20 @@ import {
     addTodoHelper,
     editTodoHelper,
     deleteTodoHelper,
+    searchTodoHelper,
 } from "./helpers";
 import Sidebar from "./components/Sidebar/Sidebar";
 function App() {
     const [todos, setTodos] = useState([]);
 
     useEffect(() => {
-        const getAllTodos = async () => {
-            const response = await getAllTodosHelper();
-            setTodos(response);
-        };
         getAllTodos();
     }, []);
+
+    const getAllTodos = async () => {
+        const response = await getAllTodosHelper();
+        setTodos(response);
+    };
 
     const addTodo = async (title, description, list_type, tags) => {
         let parseTags = tags.split(", ");
@@ -42,16 +44,22 @@ function App() {
         await response;
         setTodos(await getAllTodosHelper());
     };
+
     const deleteTodo = async (id) => {
         const response = deleteTodoHelper(id);
         await response;
         setTodos(await getAllTodosHelper());
     };
 
+    const handleSearch = async (value) => {
+        const response = await searchTodoHelper({ value });
+        setTodos(response);
+    };
+
     return (
         <div className="website-container">
             <div className="todo-container">
-                <Sidebar />
+                <Sidebar handleSearch={handleSearch} />
                 <div className="main-content-container">
                     <div className="sticky-wall-title">Sticky Wall</div>
                     <ListTodos

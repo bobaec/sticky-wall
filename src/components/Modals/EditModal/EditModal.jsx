@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 
 const EditModal = ({ show, todo, closeModal, onSubmit, handleDelete }) => {
-    const { todo_id, title, description, list, tags } = todo;
+    const { todo_id, title, description, list_type, tags } = todo;
 
     const [updatedTitle, setUpdatedTitle] = useState(title || "");
     const [updatedDescription, setUpdatedDescription] = useState(
         description || ""
     );
-    const [updatedList, setUpdatedList] = useState(list || "");
+    const [updatedList, setUpdatedList] = useState(list_type || "");
     const [updatedTags, setUpdatedTags] = useState(tags || "");
     const [validated, setValidated] = useState(false);
 
@@ -19,19 +19,21 @@ const EditModal = ({ show, todo, closeModal, onSubmit, handleDelete }) => {
             e.stopPropagation();
         }
         setValidated(true);
-        onSubmit(
-            todo_id,
-            updatedTitle,
-            updatedDescription,
-            updatedList,
-            updatedTags
-        );
+        if (updatedTitle.length > 0 && updatedDescription.length > 0) {
+            onSubmit(
+                todo_id,
+                updatedTitle,
+                updatedDescription,
+                updatedList,
+                updatedTags
+            );
+        }
     };
 
     return (
         <Modal show={show} size="lg">
             <Modal.Header closeButton>
-                <Modal.Title>Add New Todo</Modal.Title>
+                <Modal.Title>Edit Todo</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <Form
@@ -49,6 +51,7 @@ const EditModal = ({ show, todo, closeModal, onSubmit, handleDelete }) => {
                             placeholder="Enter Title"
                             value={updatedTitle}
                             onChange={(e) => setUpdatedTitle(e.target.value)}
+                            required
                         />
                         <Form.Label className="add-description-label">
                             Description
