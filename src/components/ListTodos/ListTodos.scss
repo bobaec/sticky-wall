@@ -2,7 +2,6 @@
 
 @mixin todo-square {
     flex: 1 0 30%;
-    height: 250px;
     min-width: 250px;
     padding: 25px;
     border-radius: 10px;
@@ -19,14 +18,13 @@
     margin-top: 20px;
     flex-wrap: wrap;
     padding: 20px;
-    height: 700px;
+    height: 100%;
     overflow-y: scroll;
     -ms-overflow-style: none;
     scrollbar-width: none;
     .single-todos-container {
         @include todo-square;
         background-color: $icon-yellow;
-
         .todo-title {
             margin-bottom: 10px;
             font-size: 24px;
