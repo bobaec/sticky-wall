@@ -4,13 +4,12 @@ import { faBars, faSearch } from "@fortawesome/free-solid-svg-icons";
 
 import "./Sidebar.scss";
 import Tasks from "./Tasks/Tasks";
-import Lists from "../Lists/Lists";
+import Lists from "./Lists/Lists";
 import Tags from "./Tags/Tags";
 
-const Sidebar = ({ handleSearch }) => {
+const Sidebar = ({ handleSearch, numberOfTodos }) => {
     const [search, setSearch] = useState("");
     const handleSearchRef = useRef(handleSearch);
-
     useEffect(() => {
         handleSearchRef.current = handleSearch;
     }, [handleSearch]);
@@ -38,7 +37,7 @@ const Sidebar = ({ handleSearch }) => {
                     ></input>
                 </form>
             </div>
-            <Tasks />
+            <Tasks numberOfTodos={numberOfTodos} />
             <hr />
             <Lists />
             <hr />

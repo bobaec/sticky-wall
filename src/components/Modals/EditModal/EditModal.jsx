@@ -1,14 +1,20 @@
 import React, { useState } from "react";
-import { Modal, Button, Form, Row, Col } from "react-bootstrap";
+import { Modal, Button, Form, Row, Col, Dropdown } from "react-bootstrap";
 
 const EditModal = ({ show, todo, closeModal, onSubmit, handleDelete }) => {
-    const { todo_id, title, description, list_type, tags } = todo;
+    const { todo_id, title, description, list_type, tags, list_color } = todo;
 
     const [updatedTitle, setUpdatedTitle] = useState(title || "");
     const [updatedDescription, setUpdatedDescription] = useState(
         description || ""
     );
     const [updatedList, setUpdatedList] = useState(list_type || "");
+    const [updatedColorTitle, setUpdatedColorTitle] = useState(
+        list_color.split(", ")[0] || "Yellow"
+    );
+    const [updatedListColor, setUpdatedListColor] = useState(
+        list_color || "Yellow, #ffd43b"
+    );
     const [updatedTags, setUpdatedTags] = useState(tags || "");
     const [validated, setValidated] = useState(false);
 
@@ -25,7 +31,8 @@ const EditModal = ({ show, todo, closeModal, onSubmit, handleDelete }) => {
                 updatedTitle,
                 updatedDescription,
                 updatedList,
-                updatedTags
+                updatedTags,
+                updatedListColor
             );
         }
     };
@@ -70,7 +77,7 @@ const EditModal = ({ show, todo, closeModal, onSubmit, handleDelete }) => {
                                     required
                                 />
                             </Col>
-                            <Col md={12}>
+                            <Col md={6}>
                                 <Form.Label className="add-description-label">
                                     List
                                 </Form.Label>
@@ -84,6 +91,45 @@ const EditModal = ({ show, todo, closeModal, onSubmit, handleDelete }) => {
                                         setUpdatedList(e.target.value)
                                     }
                                 />
+                            </Col>
+                            <Col md={6}>
+                                <Form.Label className="add-description-label">
+                                    Color
+                                </Form.Label>
+                                <Dropdown
+                                    className={`color-dropdown-container w-100`}
+                                    onSelect={(color) => {
+                                        const splitColorAndHex =
+                                            color.split(", ");
+                                        setUpdatedColorTitle(
+                                            splitColorAndHex[0]
+                                        );
+                                        setUpdatedListColor(color);
+                                    }}
+                                >
+                                    <Dropdown.Toggle
+                                        className={`dropdown-toggle-container w-100 ${updatedColorTitle.toLowerCase()}-background`}
+                                    >
+                                        {updatedColorTitle}
+                                    </Dropdown.Toggle>
+                                    <Dropdown.Menu className="w-100">
+                                        <Dropdown.Item eventKey="Yellow, #ffd43b">
+                                            Yellow
+                                        </Dropdown.Item>
+                                        <Dropdown.Item eventKey="Red, #ff6b6b">
+                                            Red
+                                        </Dropdown.Item>
+                                        <Dropdown.Item eventKey="Blue, #66d9e8">
+                                            Blue
+                                        </Dropdown.Item>
+                                        <Dropdown.Item eventKey="Orange, #eea768">
+                                            Orange
+                                        </Dropdown.Item>
+                                        <Dropdown.Item eventKey="Gray, #7c7c7c">
+                                            Gray
+                                        </Dropdown.Item>
+                                    </Dropdown.Menu>
+                                </Dropdown>
                             </Col>
                             <Col md={12}>
                                 <Form.Label className="add-description-label">

@@ -10,13 +10,20 @@ const ListTodos = ({ todos, addTodo, editTodo, deleteTodo }) => {
     const [showEditTodoModal, setShowEditTodoModal] = useState(false);
     const [specificTodo, setSpecificTodo] = useState(null);
 
-    const handleAdd = (title, description, list_type, tags) => {
-        addTodo(title, description, list_type, tags);
+    const handleAdd = (title, description, list_type, tags, list_color) => {
+        addTodo(title, description, list_type, tags, list_color);
         setShowAddTodoModal(false);
     };
 
-    const handleEdit = (id, title, description, list_type, tags) => {
-        editTodo(id, title, description, list_type, tags);
+    const handleEdit = (
+        id,
+        title,
+        description,
+        list_type,
+        tags,
+        list_color
+    ) => {
+        editTodo(id, title, description, list_type, tags, list_color);
         setShowEditTodoModal(false);
     };
 
@@ -39,7 +46,9 @@ const ListTodos = ({ todos, addTodo, editTodo, deleteTodo }) => {
             {todos.map((todo, index) => {
                 return (
                     <div
-                        className="single-todos-container"
+                        className={`single-todos-container ${todo.list_color
+                            .split(", ")[0]
+                            .toLowerCase()}-background`}
                         key={index}
                         onClick={() => showEditModal(todo)}
                     >

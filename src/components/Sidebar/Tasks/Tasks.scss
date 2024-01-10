@@ -6,8 +6,7 @@
     margin-top: 20px;
     .upcoming-container,
     .today-container,
-    .calendar-container,
-    .sticky-wall-container {
+    .calendar-container {
         margin: 10px 0 0 10px;
         cursor: pointer;
         .upcoming-title,
@@ -22,6 +21,27 @@
     .calendar-title,
     .sticky-wall-title {
         margin-left: 15px;
+    }
+    .sticky-wall-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 5px;
+        background-color: #ebebeb;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        .title-and-icon-container {
+            display: flex;
+            align-items: center;
+        }
+        .number-of-todos-container {
+            background-color: white;
+            padding: 5px;
+            border-radius: 5px;
+            width: 35px;
+            text-align: center;
+        }
     }
     .tasks-title {
         font-size: 12px;

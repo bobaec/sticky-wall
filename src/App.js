@@ -21,25 +21,34 @@ function App() {
         setTodos(response);
     };
 
-    const addTodo = async (title, description, list_type, tags) => {
+    const addTodo = async (title, description, list_type, tags, list_color) => {
         let parseTags = tags.split(", ");
         parseTags = parseTags.map((tag) => tag.replace(/,$/, ""));
         const response = addTodoHelper(
             title,
             description,
             list_type,
-            parseTags
+            parseTags,
+            list_color
         );
         await response;
         setTodos(await getAllTodosHelper());
     };
-    const editTodo = async (id, title, description, list_type, tags) => {
+    const editTodo = async (
+        id,
+        title,
+        description,
+        list_type,
+        tags,
+        list_color
+    ) => {
         const response = editTodoHelper(
             id,
             title,
             description,
             list_type,
-            tags
+            tags,
+            list_color
         );
         await response;
         setTodos(await getAllTodosHelper());
@@ -59,7 +68,10 @@ function App() {
     return (
         <div className="website-container">
             <div className="todo-container">
-                <Sidebar handleSearch={handleSearch} />
+                <Sidebar
+                    handleSearch={handleSearch}
+                    numberOfTodos={todos.length}
+                />
                 <div className="main-content-container">
                     <div className="sticky-wall-title">Sticky Wall</div>
                     <ListTodos

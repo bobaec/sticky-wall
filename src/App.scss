@@ -19,8 +19,7 @@ body {
         background-color: white;
         border-radius: 10px;
         padding: 20px;
-        height: 800px;
-        max-height: 1000px;
+        min-height: 800px;
         max-width: 1500px;
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
         .main-content-container {
@@ -38,26 +37,32 @@ body {
 }
 
 .gray {
-    color: $icon-gray;
+    color: $icon-gray !important;
 }
 .gray-background {
-    background-color: $icon-gray;
+    background-color: $icon-gray !important;
 }
 .red {
-    color: $icon-red;
+    color: $icon-red !important;
 }
 .red-background {
-    background-color: $icon-red;
+    background-color: $icon-red !important;
 }
 .blue {
-    color: $icon-blue;
+    color: $icon-blue !important;
 }
 .blue-background {
-    background-color: $icon-blue;
+    background-color: $icon-blue !important;
 }
 .yellow {
-    color: $icon-yellow;
+    color: $icon-yellow !important;
 }
 .yellow-background {
-    background-color: $icon-yellow;
+    background-color: $icon-yellow !important;
+}
+.orange {
+    color: $icon-orange !important;
+}
+.orange-background {
+    background-color: $icon-orange !important;
 }

@@ -8,7 +8,7 @@ import {
     faNoteSticky,
 } from "@fortawesome/free-solid-svg-icons";
 
-const Tasks = () => {
+const Tasks = ({ numberOfTodos }) => {
     return (
         <div className="tasks-container">
             <div className="tasks-title">TASKS</div>
@@ -25,8 +25,11 @@ const Tasks = () => {
                 <span className="calendar-title">Calendar</span>
             </div>
             <div className="sticky-wall-container">
-                <FontAwesomeIcon className="gray" icon={faNoteSticky} />
-                <span className="sticky-wall-title">Sticky Wall</span>
+                <div className="title-and-icon-container">
+                    <FontAwesomeIcon className="gray" icon={faNoteSticky} />
+                    <span className="sticky-wall-title">Sticky Wall</span>
+                </div>
+                <div className="number-of-todos-container">{numberOfTodos}</div>
             </div>
         </div>
     );

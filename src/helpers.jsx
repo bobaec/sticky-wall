@@ -4,8 +4,14 @@ const getAllTodosHelper = async () => {
     return jsonData;
 };
 
-const addTodoHelper = async (title, description, list_type, tags) => {
-    const body = { title, description, list_type, tags };
+const addTodoHelper = async (
+    title,
+    description,
+    list_type,
+    tags,
+    list_color
+) => {
+    const body = { title, description, list_type, tags, list_color };
     const response = fetch("http://localhost:5000/todos", {
         method: "POST",
         headers: {
@@ -16,8 +22,15 @@ const addTodoHelper = async (title, description, list_type, tags) => {
     await response;
 };
 
-const editTodoHelper = async (id, title, description, list_type, tags) => {
-    const body = { title, description, list_type, tags };
+const editTodoHelper = async (
+    id,
+    title,
+    description,
+    list_type,
+    tags,
+    list_color
+) => {
+    const body = { title, description, list_type, tags, list_color };
     const response = fetch(`http://localhost:5000/todos/${id}`, {
         method: "PUT",
         headers: {
